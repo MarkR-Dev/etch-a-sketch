@@ -16,13 +16,19 @@ html {
 #grid-container {
     width: 600px;
     height: 600px;
-    outline: 1px solid black;
     margin: 30px auto;
+    border: 1px solid black; 
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.row {
+    flex-grow: 1;
+    display: flex;
 }
 
 .cell {
+    flex-grow: 1;
     border: 1px solid black;
 }
 

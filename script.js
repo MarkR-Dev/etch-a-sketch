@@ -1,14 +1,16 @@
 const gridContainer = document.querySelector("#grid-container");
-const gridContainerWidth = gridContainer.offsetWidth;
-const gridContainerHeight = gridContainer.offsetHeight;
 
 let sizeOfGrid = 4;
 
-//Create the required cells in the container and set their size accordingly
-for(let i = 0; i < (sizeOfGrid * sizeOfGrid); i++){
-    const cellDiv = document.createElement("div");
-    cellDiv.classList.add("cell");
-    cellDiv.style.width = `${gridContainerWidth/sizeOfGrid}px`;
-    cellDiv.style.height = `${gridContainerHeight/sizeOfGrid}px`;
-    gridContainer.appendChild(cellDiv);
+for(let i = 0; i < sizeOfGrid; i++){
+    const row = document.createElement("div");
+    row.classList.add("row");
+
+    for(let j = 0; j < sizeOfGrid; j++){
+        const cell = document.createElement("div");
+        cell.classList.add("cell");
+        row.appendChild(cell);
+    }
+
+    gridContainer.appendChild(row);
 }
