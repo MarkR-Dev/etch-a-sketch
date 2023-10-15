@@ -1,5 +1,10 @@
+const gridContainer = document.querySelector("#grid-container");
+const slider = document.querySelector("#slider");
+
+slider.addEventListener("change", resetGrid);
+
 function createGrid(gridSize){
-    const gridContainer = document.querySelector("#grid-container");
+    gridContainer.textContent = "";
 
     for(let i = 0; i < gridSize; i++){
         const row = document.createElement("div");
@@ -17,13 +22,17 @@ function createGrid(gridSize){
     const cells = document.querySelectorAll(".cell");
 
     cells.forEach((cell) => {
-        cell.addEventListener("mouseenter", draw)
+        cell.addEventListener("mouseenter", draw);
     });
+}
+
+function resetGrid(event){
+    createGrid(event.target.value)
 }
 
 function draw(event){
     event.target.style.backgroundColor = "black";  
 }
 
-let sizeOfGrid = 4;
-createGrid(sizeOfGrid)
+//let sizeOfGrid = 4;
+createGrid(10);

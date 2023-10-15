@@ -32,3 +32,6 @@ html {
     border: 1px solid black;
 }
 
+#slider:hover {
+    cursor: pointer;
+}
