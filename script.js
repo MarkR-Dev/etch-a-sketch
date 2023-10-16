@@ -1,7 +1,10 @@
 const gridContainer = document.querySelector("#grid-container");
-const slider = document.querySelector("#slider");
+const gridSizeSlider = document.querySelector("#slider");
+const clearGrid = document.querySelector("#clear");
+const defaultGridSize = 10;
 
-slider.addEventListener("change", resetGrid);
+gridSizeSlider.addEventListener("change", resetGrid);
+clearGrid.addEventListener("click", resetGrid);
 
 function createGrid(gridSize){
     gridContainer.textContent = "";
@@ -26,13 +29,12 @@ function createGrid(gridSize){
     });
 }
 
-function resetGrid(event){
-    createGrid(event.target.value)
+function resetGrid(){
+    createGrid(gridSizeSlider.value);
 }
 
 function draw(event){
     event.target.style.backgroundColor = "black";  
 }
 
-//let sizeOfGrid = 4;
-createGrid(10);
+createGrid(defaultGridSize);
