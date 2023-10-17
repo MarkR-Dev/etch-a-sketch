@@ -2,6 +2,7 @@ const gridContainer = document.querySelector("#grid-container");
 const gridSizeSlider = document.querySelector("#slider");
 const clearGridButton = document.querySelector("#clear");
 const eraseButton = document.querySelector("#erase");
+const penColorBlackButton = document.querySelector("#black");
 const defaultGridSize = 10;
 let isClicked = false;
 let penColor = "black";
@@ -11,6 +12,10 @@ clearGridButton.addEventListener("click", resetGrid);
 
 eraseButton.addEventListener("click", () => {
     penColor = "white";
+});
+
+penColorBlackButton.addEventListener("click", () => {
+    penColor = "black";
 });
 
 gridContainer.addEventListener("mousedown", (event) => {
