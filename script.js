@@ -1,11 +1,17 @@
 const gridContainer = document.querySelector("#grid-container");
 const gridSizeSlider = document.querySelector("#slider");
 const clearGridButton = document.querySelector("#clear");
+const eraseButton = document.querySelector("#erase");
 const defaultGridSize = 10;
 let isClicked = false;
+let penColor = "black";
 
 gridSizeSlider.addEventListener("change", resetGrid);
 clearGridButton.addEventListener("click", resetGrid);
+
+eraseButton.addEventListener("click", () => {
+    penColor = "white";
+});
 
 gridContainer.addEventListener("mousedown", (event) => {
     //Prevents default dragable behaviour of mouse-down from occuring over already painted cells
@@ -22,7 +28,7 @@ gridContainer.addEventListener("mousedown", (event) => {
     /*
     This call to draw was needed to colour in the target cell 
     where the click occurs and subsequent draws will occur when 
-    the cursor enters a cell via mouse enter
+    the cursor enters a cell via the cell's event listener
     */
     draw(event);
 });
@@ -65,7 +71,7 @@ function resetGrid(){
 
 function draw(event){
     if(isClicked){
-        event.target.style.backgroundColor = "black"; 
+        event.target.style.backgroundColor = penColor; 
     }
 }
 

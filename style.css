@@ -31,6 +31,7 @@ html {
 .cell {
     flex-grow: 1;
     border: 1px solid black;
+    background-color: white;
 }
 
 #slider:hover {
