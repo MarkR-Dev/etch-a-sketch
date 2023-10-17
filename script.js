@@ -3,8 +3,10 @@ const gridSizeSlider = document.querySelector("#slider");
 const clearGridButton = document.querySelector("#clear");
 const eraseButton = document.querySelector("#erase");
 const penColorBlackButton = document.querySelector("#black");
+const randomRgbButton = document.querySelector("#rgb");
 const defaultGridSize = 10;
-let isClicked = false;
+let isMouseClickDown = false;
+let isRandomRgbSelected = false;
 let penColor = "black";
 
 gridSizeSlider.addEventListener("change", resetGrid);
@@ -12,16 +14,22 @@ clearGridButton.addEventListener("click", resetGrid);
 
 eraseButton.addEventListener("click", () => {
     penColor = "white";
+    isRandomRgbSelected = false;
 });
 
 penColorBlackButton.addEventListener("click", () => {
     penColor = "black";
+    isRandomRgbSelected = false;
+});
+
+randomRgbButton.addEventListener("click", () => {
+    isRandomRgbSelected = true;
 });
 
 gridContainer.addEventListener("mousedown", (event) => {
     //Prevents default dragable behaviour of mouse-down from occuring over already painted cells
     event.preventDefault();
-    isClicked = true;
+    isMouseClickDown = true;
 
     /*
     Prevents an unwanted effect: Clicking on the outer border
@@ -44,7 +52,7 @@ so that if the user keeps left click depressed on the grid and
 moves their cursor off the grid and releases the boolean is updated
 */
 document.addEventListener("mouseup", () => {
-    isClicked = false;
+    isMouseClickDown = false;
 });
 
 function createGrid(gridSize){
@@ -74,8 +82,21 @@ function resetGrid(){
     createGrid(gridSizeSlider.value);
 }
 
+function randomRgb(){
+    let r = Math.floor((Math.random() * 255) + 1);
+    let g = Math.floor((Math.random() * 255) + 1);
+    let b = Math.floor((Math.random() * 255) + 1);
+
+    return `rgb(${r}, ${g}, ${b})`;
+}
+
 function draw(event){
-    if(isClicked){
+    if(isMouseClickDown){
+
+        if(isRandomRgbSelected){
+            penColor = randomRgb();
+        }
+
         event.target.style.backgroundColor = penColor; 
     }
 }
