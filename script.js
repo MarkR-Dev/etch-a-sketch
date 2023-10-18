@@ -4,26 +4,44 @@ const clearGridButton = document.querySelector("#clear");
 const eraseButton = document.querySelector("#erase");
 const penColorBlackButton = document.querySelector("#black");
 const randomRgbButton = document.querySelector("#rgb");
+const shadeButton = document.querySelector("#shade");
 const defaultGridSize = 10;
 let isMouseClickDown = false;
+let isEraserSelected = false;
+let isBlackSelected = true;
 let isRandomRgbSelected = false;
+let isShadeSelected = false;
 let penColor = "black";
 
 gridSizeSlider.addEventListener("change", resetGrid);
 clearGridButton.addEventListener("click", resetGrid);
 
 eraseButton.addEventListener("click", () => {
-    penColor = "white";
+    isEraserSelected = true;
+    isBlackSelected = false;
     isRandomRgbSelected = false;
+    isShadeSelected = false;
 });
 
 penColorBlackButton.addEventListener("click", () => {
-    penColor = "black";
+    isEraserSelected = false;
+    isBlackSelected = true;
     isRandomRgbSelected = false;
+    isShadeSelected = false;
 });
 
 randomRgbButton.addEventListener("click", () => {
+    isEraserSelected = false;
+    isBlackSelected = false;
     isRandomRgbSelected = true;
+    isShadeSelected = false;
+});
+
+shadeButton.addEventListener("click", () => {
+    isEraserSelected = false;
+    isBlackSelected = false;
+    isRandomRgbSelected = false;
+    isShadeSelected = true;
 });
 
 gridContainer.addEventListener("mousedown", (event) => {
@@ -90,11 +108,40 @@ function randomRgb(){
     return `rgb(${r}, ${g}, ${b})`;
 }
 
+function shadePenColor(event){
+    if(event.target.dataset.shade){
+        event.target.dataset.shade = `${(Number(event.target.dataset.shade) + 0.1).toFixed(1)}`;
+    }else{
+        event.target.setAttribute("data-shade", "0.1");
+    }
+
+    return `rgba(0, 0, 0, ${event.target.dataset.shade})`;
+}
+
+function removeDataShade(event){
+   event.target.removeAttribute("data-shade");
+}
+
 function draw(event){
     if(isMouseClickDown){
 
+        if(isEraserSelected){
+            penColor = "white";
+            removeDataShade(event);
+        }
+
+        if(isBlackSelected){
+            penColor = "black";
+            removeDataShade(event);
+        }
+
         if(isRandomRgbSelected){
             penColor = randomRgb();
+            removeDataShade(event);
+        }
+
+        if(isShadeSelected){
+            penColor = shadePenColor(event);
         }
 
         event.target.style.backgroundColor = penColor; 
