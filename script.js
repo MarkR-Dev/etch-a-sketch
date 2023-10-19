@@ -1,5 +1,6 @@
 const gridContainer = document.querySelector("#grid-container");
 const gridSizeSlider = document.querySelector("#slider");
+const gridSizeSliderText = document.querySelector("#grid-size-text");
 const clearGridButton = document.querySelector("#clear");
 const eraseButton = document.querySelector("#erase");
 const penColorBlackButton = document.querySelector("#black");
@@ -16,6 +17,9 @@ let isColorPickerSelected = false;
 let penColor = "";
 
 gridSizeSlider.addEventListener("change", resetGrid);
+gridSizeSlider.addEventListener("input", () => {
+    gridSizeSliderText.textContent = `${gridSizeSlider.value} x ${gridSizeSlider.value}`
+});
 clearGridButton.addEventListener("click", resetGrid);
 
 eraseButton.addEventListener("click", () => {
@@ -156,6 +160,7 @@ function draw(event){
 
         if(isShadeSelected){
             penColor = shadePenColor(event);
+            console.log(penColor)
         }
 
         if(isColorPickerSelected){

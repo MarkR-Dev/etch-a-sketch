@@ -13,14 +13,76 @@ html {
     margin: 0;
 }
 
+body{
+    background-color: lightseagreen;
+}
+
+h1 {
+    font-family: monospace;
+    text-align: center;
+    margin: 50px;
+    color: white;
+    font-size: 36px;
+}
+
+#content-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+#controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+}
+
+#color-picker {
+    width: 90px;
+    height: 40px;
+    border: none;
+    margin: 10px;
+}
+
+button {
+    width: 90px;
+    height: 40px;
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    font-family: monospace;
+    font-weight: bold;
+    margin: 10px;
+}
+
+#slider{
+    width: 90px;
+    margin: 5px;
+    accent-color: white;
+}
+
+#slider:hover {
+    cursor: pointer;
+}
+
+#grid-size-text {
+    color: white;
+    font-size: 20px;
+    font-family: monospace;
+    font-weight: bold;
+    margin: 20px;
+}
+
 #grid-container {
     width: 600px;
     height: 600px;
-    margin: 30px auto;
     border: 1px solid black; 
     display: flex;
     flex-direction: column;
     cursor: crosshair;
+    background-color: white;
 }
 
 .row {
@@ -31,9 +93,6 @@ html {
 .cell {
     flex-grow: 1;
     border: 1px solid black;
-    background-color: white;
 }
 
-#slider:hover {
-    cursor: pointer;
-}
+

@@ -7,21 +7,31 @@
         <script src="script.js" defer></script>
     </head>
     <body>
-        <div id="grid-container"></div>
+        <h1>Etch-a-Sketch</h1>
 
-        <input type="range" min="1" max="20" value="10" id="slider">
+        <div id="content-container">
+            <div id="controls">
+                <input type="color" id="color-picker" value="#000000">
 
-        <button id="clear">CLEAR</button>
+                <button id="black">BLACK</button>
 
-        <button id="erase">ERASE</button>
+                <button id="rgb">RGB</button>
 
-        <button id="black">BLACK</button>
+                <button id="shade">SHADE</button>
 
-        <button id="rgb">RGB</button>
+                <button id="erase">ERASE</button>
 
-        <button id="shade">SHADE</button>
+                <button id="clear">CLEAR</button>
 
-        <input type="color" id="color-picker" value="black">
-        
+                <input type="range" min="1" max="20" value="10" id="slider">
+
+                <div>
+                    <span id="grid-size-text">10 x 10</span>
+                </div>
+
+            </div>
+
+            <div id="grid-container"></div>
+        </div>
     </body>
 </html>
