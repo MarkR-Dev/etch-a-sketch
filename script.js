@@ -5,13 +5,15 @@ const eraseButton = document.querySelector("#erase");
 const penColorBlackButton = document.querySelector("#black");
 const randomRgbButton = document.querySelector("#rgb");
 const shadeButton = document.querySelector("#shade");
+const colorPicker = document.querySelector("#color-picker");
 const defaultGridSize = 10;
 let isMouseClickDown = false;
 let isEraserSelected = false;
 let isBlackSelected = true;
 let isRandomRgbSelected = false;
 let isShadeSelected = false;
-let penColor = "black";
+let isColorPickerSelected = false;
+let penColor = "";
 
 gridSizeSlider.addEventListener("change", resetGrid);
 clearGridButton.addEventListener("click", resetGrid);
@@ -21,6 +23,7 @@ eraseButton.addEventListener("click", () => {
     isBlackSelected = false;
     isRandomRgbSelected = false;
     isShadeSelected = false;
+    isColorPickerSelected = false;
 });
 
 penColorBlackButton.addEventListener("click", () => {
@@ -28,6 +31,7 @@ penColorBlackButton.addEventListener("click", () => {
     isBlackSelected = true;
     isRandomRgbSelected = false;
     isShadeSelected = false;
+    isColorPickerSelected = false;
 });
 
 randomRgbButton.addEventListener("click", () => {
@@ -35,6 +39,7 @@ randomRgbButton.addEventListener("click", () => {
     isBlackSelected = false;
     isRandomRgbSelected = true;
     isShadeSelected = false;
+    isColorPickerSelected = false;
 });
 
 shadeButton.addEventListener("click", () => {
@@ -42,6 +47,15 @@ shadeButton.addEventListener("click", () => {
     isBlackSelected = false;
     isRandomRgbSelected = false;
     isShadeSelected = true;
+    isColorPickerSelected = false;
+});
+
+colorPicker.addEventListener("input", () => {
+    isColorPickerSelected = true;
+    isEraserSelected = false;
+    isBlackSelected = false;
+    isRandomRgbSelected = false;
+    isShadeSelected = false;
 });
 
 gridContainer.addEventListener("mousedown", (event) => {
@@ -142,6 +156,11 @@ function draw(event){
 
         if(isShadeSelected){
             penColor = shadePenColor(event);
+        }
+
+        if(isColorPickerSelected){
+            penColor = colorPicker.value;
+            removeDataShade(event);
         }
 
         event.target.style.backgroundColor = penColor; 
